@@ -158,16 +158,23 @@ namespace tarea_extraclase_2
 
         public int GetMiddle()
         {
-            if (mid == null) // Si la lista está vacía, lanza una excepción.
+            // Verifica si el objeto actual (la lista) es null.
+            if (this == null)
+                throw new NullReferenceException("La lista es null.");
+
+            // Verifica si la lista está vacía, es decir, si 'mid' es null.
+            if (mid == null)
                 throw new InvalidOperationException("La lista está vacía.");
 
-            return mid.Value; // Devuelve el valor del nodo medio.
+            // Devuelve el valor del nodo medio.
+            return mid.Value;
         }
+
 
         public void MergeSorted(OwnLinkedList list, SortDirection direction)
         {
             if (this == null) // Verifica si la lista actual es nula.
-                throw new ArgumentNullException("La lista principal es nula.");
+                throw new NullReferenceException("La lista principal es nula.");
 
             if (list == null) // Verifica si la lista a mezclar es nula.
                 throw new ArgumentNullException("La lista que se quiere mezclar es nula.");
@@ -227,6 +234,10 @@ namespace tarea_extraclase_2
 
         public void Invert()
         {
+            // Verifica si la lista es null
+            if (this == null)
+                throw new ArgumentNullException("La lista es null.");
+
             Node current = head;
             Node temp = null;
 
@@ -284,49 +295,50 @@ namespace tarea_extraclase_2
 
             Console.WriteLine("]"); // Cierra el corchete y hace un salto de línea.
         }
+    }
 
-        public class Program
+    public class Program
+    {
+        public static void Main()
         {
-            public static void Main()
-            {
-                // Crear dos listas enlazadas dobles
-                OwnLinkedList listaA = new OwnLinkedList();
-                OwnLinkedList listaB = new OwnLinkedList();
+            // Crear dos listas enlazadas dobles
+            OwnLinkedList listaA = new OwnLinkedList();
+            OwnLinkedList listaB = new OwnLinkedList();
 
-                // Insertar valores en orden en ambas listas
-                listaA.InsertInOrder(1);
-                listaA.InsertInOrder(9);
-                listaA.InsertInOrder(5);
+            // Insertar valores en orden en ambas listas
+            listaA.InsertInOrder(1);
+            listaA.InsertInOrder(9);
+            listaA.InsertInOrder(5);
 
-                listaB.InsertInOrder(10);
-                listaB.InsertInOrder(6);
-                listaB.InsertInOrder(2);
+            listaB.InsertInOrder(10);
+            listaB.InsertInOrder(6);
+            listaB.InsertInOrder(2);
 
-                Console.WriteLine("Lista A: ");
-                listaA.PrintList();
-                Console.ReadLine();
+            Console.WriteLine("Lista A: ");
+            listaA.PrintList();
+            Console.ReadLine();
 
-                Console.WriteLine("Lista B: ");
-                listaB.PrintList();
-                Console.ReadLine();
+            Console.WriteLine("Lista B: ");
+            listaB.PrintList();
+            Console.ReadLine();
 
-                // Mezclar ambas listas en orden ascendente
-                listaA.MergeSorted(listaB, SortDirection.Ascending);
+            // Mezclar ambas listas en orden ascendente
+            listaA.MergeSorted(listaB, SortDirection.Ascending);
 
-                Console.WriteLine("Lista A después de mezclar con B (ascendente): ");
-                listaA.PrintList();
-                Console.ReadLine();
+            Console.WriteLine("Lista A después de mezclar con B (ascendente): ");
+            listaA.PrintList();
+            Console.ReadLine();
 
-                // Invertir la lista A
-                listaA.Invert();
-                Console.WriteLine("Lista A invertida: ");
-                listaA.PrintList();
-                Console.ReadLine();
+            // Invertir la lista A
+            listaA.Invert();
+            Console.WriteLine("Lista A invertida: ");
+            listaA.PrintList();
+            Console.ReadLine();
 
-                // Obtener el valor del nodo medio
-                Console.WriteLine("El valor del nodo medio es: " + listaA.GetMiddle());
-                Console.ReadLine();
-            }
+            // Obtener el valor del nodo medio
+            Console.WriteLine("El valor del nodo medio es: " + listaA.GetMiddle());
+            Console.ReadLine();
         }
     }
 }
+
