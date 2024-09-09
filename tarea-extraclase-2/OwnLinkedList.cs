@@ -11,6 +11,7 @@ namespace tarea_extraclase_2
         int GetMiddle();
         void MergeSorted(OwnLinkedList list, SortDirection direction);
         void Invert();
+        void PrintList();
     }
 
     internal class Node
